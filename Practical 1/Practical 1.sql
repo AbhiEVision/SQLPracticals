@@ -4,12 +4,12 @@
 
 -- =====================
 
-DROP DATABASE IF EXISTS SQL_Practicals;
+DROP DATABASE IF EXISTS [SQL_Practicals];
 GO
-CREATE DATABASE SQL_Practicals;
+CREATE DATABASE [SQL_Practicals];
 GO
 
-USE SQL_Practicals;
+USE [SQL_Practicals];
 GO
 -- =====================
 
@@ -17,9 +17,9 @@ GO
 
 -- =====================
 
-DROP SCHEMA IF EXISTS practical_1;
+DROP SCHEMA IF EXISTS [practical_1];
 GO
-CREATE SCHEMA practical_1;
+CREATE SCHEMA [practical_1];
 GO
 
 
@@ -29,9 +29,9 @@ GO
 
 -- =====================
 
-DROP TABLE IF EXISTS practical_1.product;
+DROP TABLE IF EXISTS [practical_1].[product];
 GO
-CREATE TABLE practical_1.product(
+CREATE TABLE [practical_1].[product](
 	ProductId INT PRIMARY KEY IDENTITY,
 	ProductName VARCHAR(500) NOT NULL,
 	category VARCHAR(MAX) NOT NULL,
@@ -45,7 +45,7 @@ GO
 
 -- =====================
 
-ALTER TABLE practical_1.product
+ALTER TABLE [practical_1].[product]
 ADD description VARCHAR(MAX);
 GO
 
@@ -55,7 +55,7 @@ GO
 
 -- =====================
 
-INSERT INTO practical_1.product(ProductName,category,Price, description) VALUES
+INSERT INTO [practical_1].[product] (ProductName,category,Price, description) VALUES
 	('blood pressure moniter','Health',50000,'automatic blood pressure detection'),
 	('Vaseline', 'Health', 500, 'This is a vaseline'),
 	('Neem Face Wash', 'Health', 1500, 'This is neem face wash'),
@@ -78,7 +78,7 @@ GO
 SELECT
 	ProductId,ProductName,category,Price, description
 FROM
-	practical_1.product
+	[practical_1].[product]
 WHERE
 	category = 'Health';
 GO
@@ -87,14 +87,14 @@ GO
 SELECT
 	SUM(Price) AS total
 FROM
-	practical_1.product;
+	[practical_1].[product];
 GO
 
 -- 3) Write a query to display product in descending order of price
 SELECT
 	ProductId, ProductName,category, Price, description
 FROM 
-	practical_1.product
+	[practical_1].[product]
 ORDER BY
 	Price DESC;
 GO
@@ -103,7 +103,7 @@ GO
 SELECT
 	category, COUNT(*) product_count
 FROM
-	practical_1.product
+	[practical_1].[product]
 WHERE
 	Price > 10000
 GROUP BY

@@ -4,22 +4,22 @@
 
 -- =====================
 
-DROP DATABASE IF EXISTS SQL_Practicals;
+DROP DATABASE IF EXISTS [SQL_Practicals];
 
-CREATE DATABASE SQL_Practicals;
+CREATE DATABASE [SQL_Practicals];
 GO
 
-USE SQL_Practicals;
-
+USE [SQL_Practicals];
+GO;
 -- =====================
 
 --    CREATE SCHEMA
 
 -- =====================
 
-DROP SCHEMA IF EXISTS practical_2;
+DROP SCHEMA IF EXISTS [practical_2];
 GO
-CREATE SCHEMA practical_2;
+CREATE SCHEMA [practical_2];
 GO
 
 -- =====================
@@ -29,17 +29,17 @@ GO
 -- =====================
 
 
-DROP TABLE IF EXISTS practical_2.Department
+DROP TABLE IF EXISTS [practical_2].[Department]
 GO
-CREATE TABLE practical_2.Department ( 
+CREATE TABLE [practical_2].[Department] ( 
 	DepartmentId INT PRIMARY KEY IDENTITY,
 	DepartmentName VARCHAR(200) NOT NULL
 )
 GO
 
-DROP TABLE IF EXISTS practical_2.Employee
+DROP TABLE IF EXISTS [practical_2].[Employee]
 GO
-CREATE TABLE practical_2.Employee (
+CREATE TABLE [practical_2].[Employee] (
 	EmployeeId INT PRIMARY KEY IDENTITY,
 	EmployeeName VARCHAR(100) NOT NULL,
 	DepartmentId INT NOT NULL,
@@ -54,14 +54,14 @@ GO
 
 -- =====================
 
-INSERT INTO practical_2.Department ( DepartmentName)
+INSERT INTO [practical_2].[Department] ( DepartmentName)
 VALUES 
 	( 'HR'),
 	( 'SALES'),
 	( 'DEVELOPER'),
 	( 'IT')
 
-INSERT INTO practical_2.Employee ( EmployeeName, DepartmentId, Experience, Salary)
+INSERT INTO [practical_2].[Employee] ( EmployeeName, DepartmentId, Experience, Salary)
 VALUES
 	('Abhi',	3,	11,	650000),
 	('Bhavin',	3,	1.3,500000),
@@ -91,8 +91,8 @@ SELECT
 	EmployeeName EmpName, 
 	DepartmentName
 FROM
-	practical_2.Employee emp
-	LEFT JOIN practical_2.Department dept 
+	[practical_2].[Employee] emp
+	LEFT JOIN [practical_2].[Department] dept 
 		ON emp.DepartmentId = dept.DepartmentId
 
 -- 2) Write a Query to display department wise employee count
@@ -100,12 +100,12 @@ SELECT
 	dept.DepartmentName,
 	ct.employees
 FROM
-	practical_2.Department dept
+	[practical_2].[Department] dept
 	LEFT JOIN (
 		SELECT
 			DepartmentId, COUNT(*) employees
 		FROM
-			practical_2.Employee
+			[practical_2].[Employee]
 		GROUP BY
 			DepartmentId
 		) AS ct
@@ -115,12 +115,12 @@ FROM
 SELECT
 	DepartmentName, max_salary
 FROM
-	practical_2.Department dept
+	[practical_2].[Department] dept
 	LEFT JOIN (
 		SELECT
 			DepartmentId, MAX(Salary) max_salary
 		FROM
-			practical_2.Employee
+			[practical_2].[Employee]
 		GROUP BY
 			DepartmentId
 		) AS ct
@@ -130,8 +130,8 @@ FROM
 SELECT
 	emp.EmployeeName,dept.DepartmentName
 FROM
-	practical_2.Employee emp
-	LEFT JOIN practical_2.Department dept
+	[practical_2].[Employee] emp
+	LEFT JOIN [practical_2].[Department] dept
 		ON emp.DepartmentId = dept.DepartmentId
 ORDER BY
 	dept.DepartmentName
@@ -153,4 +153,4 @@ SELECT
 	END
 	AS grade
 FROM
-	practical_2.Employee
+	[practical_2].[Employee] 
